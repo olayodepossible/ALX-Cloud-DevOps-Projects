@@ -12,22 +12,22 @@ Parameters:
     Type: String
     Default: 10.0.0.0/16
 
-  PublicSubnet1:
+  PublicSubnet1CIDR:
     Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
     Type: String
     Default: 10.0.1.0/24
 
-  PublicSubnet2:
+  PublicSubnet2CIDR:
     Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
     Type: String
     Default: 10.0.2.0/24
 
-  PrivateSubnet1:
+  PrivateSubnet1CIDR:
     Description: Please enter the IP range (CIDR notation) for the private subnet in the first Availability Zone
     Type: String
     Default: 10.0.3.0/24
 
-  PrivateSubnet2:
+  PrivateSubnet2CIDR:
     Description: Please enter the IP range (CIDR notation) for the private subnet in the second Availability Zone
     Type: String
     Default: 10.0.4.0/24
@@ -60,7 +60,7 @@ Resources:
     Properties:
       VpcId: !Ref myVPC
       AvailabilityZone: !Select [0, !GetAZs ""]
-      CidrBlock: !Ref SadicPublicSubnet1IPV4ADDRS
+      CidrBlock: !Ref PublicSubnet1CIDR
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -71,7 +71,7 @@ Resources:
     Properties:
       VpcId: !Ref myVPC
       AvailabilityZone: !Select [1, !GetAZs ""]
-      CidrBlock: !Ref PublicSubnet2
+      CidrBlock: !Ref PublicSubnet2CIDR
       MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
@@ -82,7 +82,7 @@ Resources:
     Properties:
       VpcId: !Ref myVPC
       AvailabilityZone: !Select [0, !GetAZs ""]
-      CidrBlock: !Ref PrivateSubnet1
+      CidrBlock: !Ref PrivateSubnet1CIDR
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
@@ -93,7 +93,7 @@ Resources:
     Properties:
       VpcId: !Ref myVPC
       AvailabilityZone: !Select [1, !GetAZs ""]
-      CidrBlock: !Ref PrivateSubnet2
+      CidrBlock: !Ref PrivateSubnet2CIDR
       MapPublicIpOnLaunch: false
       Tags:
         - Key: Name
@@ -110,18 +110,14 @@ Resources:
 
   NatGateway1EIP:
     Type: AWS::EC2::EIP
-    DependsOn: InternetGatewayAttachment
     Properties:
-      Domain: vpc
       Tags:
         - Key: Name
           Value: !Sub ${EnvironmentName} - NatGateway1EIP
 
   NatGateway2EIP:
     Type: AWS::EC2::EIP
-    DependsOn: InternetGatewayAttachment
     Properties:
-      Domain: vpc
       Tags:
         - Key: Name
           Value: !Sub ${EnvironmentName} - NatGateway2EIP
@@ -210,7 +206,7 @@ Outputs:
     Description: A reference to the created VPC
     Value: !Ref myVPC
     Export:
-      Name: !Sub ${EnvironmentName} - myVPC
+      Name: !Sub ${EnvironmentName}-myVPC
 
   VPCPublicRouteTable:
     Description: Public Routing
