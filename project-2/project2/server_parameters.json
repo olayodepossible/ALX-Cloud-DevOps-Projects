@@ -1,0 +1,10 @@
+[
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "ALX-Udagram-Project"
+  },
+  {
+    "ParameterKey": "EC2InstanceAMI",
+    "ParameterValue": "ami-0184e674549ab8432"
+  }
+]
