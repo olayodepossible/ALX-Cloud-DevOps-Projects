@@ -5,6 +5,6 @@
   },
   {
     "ParameterKey": "EC2InstanceAMI",
-    "ParameterValue": "ami-0184e674549ab8432"
+    "ParameterValue": "ami-08d4ac5b634553e16"
   }
 ]
