@@ -89,11 +89,11 @@ Resources:
           cd /var/www/html
           echo "<div>" > index.html
           echo "<h1>This is Akinfemiwa Abayomi udagram project</h1>" >> index.html
-          echo "<p>it works! Udagram, Udacity</p>" >> index.html
-          echo "<h3>I am happy that it works! ALX-Udagram</h3>" >> index.html
-          echo "<P>Now I truely believe... learning is an integral part of life</P>" >> index.html
-          echo "<a href="https://github.com/olayodepossible/ALX-Cloud-DevOps-Projects/tree/main/project-2/project2"  target="_blank">Thanks</a>" >> index.html
-          </div>" >> index.html
+          echo "<h3>it works! Udagram, Udacity</h3>" >> index.html
+          echo "<h5>I am happy that it works! ALX-Udagram</h5>" >> index.html
+          echo "<P>You can check the link below to see the script in repo!</P>" >> index.html
+          echo "<a href="https://github.com/olayodepossible/ALX-Cloud-DevOps-Projects/tree/main/project-2/project2"  target="_blank">myRepo</a>" >> index.html
+          echo "</div>" >> index.html
 
       ImageId: !Ref EC2InstanceAMI
       SecurityGroups:
