@@ -4,7 +4,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   print_hello:
-    # Specify the execution environment. You can specify an image from Dockerhub 
+    # Specify the execution environment. You can specify an image from Dockerhub
     # or use one of our Convenience Images from CircleCI's Developer Hub.
     docker:
       - image: circleci/node:13.8.0
@@ -26,6 +26,6 @@ workflows:
   welcome:
     jobs:
       - print_hello
-      - print_world
+      - print_world:
           requires:
             - print_hello
